@@ -29,10 +29,10 @@ namespace AI_Game_Agent
 		};
 
 		// Default constructor
-		Scene();
-		Scene(const Scene&) = default;
-		Scene& operator = (const Scene&) = default;
-		~Scene() = default;
+		Scene(uint8_t numOfRows, uint8_t numOfCols);
+		Scene(const Scene&) = delete;
+		Scene& operator = (const Scene&) = delete;
+		~Scene();
 
 		void SetPlayer(PlayerPos playerPos);
 		void SetFloor(uint8_t data[]);
@@ -54,9 +54,9 @@ namespace AI_Game_Agent
 		const char converterFloor[2]   = {' ', '-'     };
 		const char converterPlayer[3]  = {' ', '#', '='};
 
-		static const uint8_t NUM_O_COL = 4;
-		static const uint8_t NUM_O_ROW = 4; // includes floor
+		uint8_t _numOfRows; // includes floor
+		uint8_t _numOfCols;
 
-		char sceneData[NUM_O_ROW][NUM_O_COL]; //row, col
+		char* sceneData; //row, col
 	};
 }

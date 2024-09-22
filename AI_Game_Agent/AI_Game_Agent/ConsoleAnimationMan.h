@@ -52,7 +52,7 @@ namespace AI_Game_Agent
 
 		void loadNextTerrainScreen(int numCol, int numRow, std::string sceneData);
 		//void loadNextFloorScreen(int numCol, std::string sceneData);
-		void updateScreen(Scene nextScene);
+		void updateScreen(Scene& pNextScene);
 
 	};
 }

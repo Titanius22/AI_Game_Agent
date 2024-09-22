@@ -39,7 +39,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 1,0,0,0,0,1,0,0,0,0,1,1};
 		uint8_t startingFloor[] = { 1,1,0,1 };
-		Scene scene;
+		Scene scene(4, 4);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		pCAM->updateScreen(scene);
@@ -99,7 +99,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
 		uint8_t startingFloor[] = { 1,1,1,1 };
-		Scene scene;
+		Scene scene(4, 4);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		pCAM->updateScreen(scene);
@@ -195,7 +195,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
 		uint8_t startingFloor[] = { 1,1,1,1 };
-		Scene scene;
+		Scene scene(4, 4);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
@@ -399,7 +399,7 @@ namespace AI_Game_Agent
 		changeColour(WHITE);
 	}
 
-	void ConsoleAnimationMan::updateScreen(Scene nextScene)
+	void ConsoleAnimationMan::updateScreen(Scene& pNextScene)
 	{
 		HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -407,12 +407,12 @@ namespace AI_Game_Agent
 		COORD tempCursorStart;
 		int i;
 
-		for (i = 0; i < nextScene.GetNumOfRow(); i++)
+		for (i = 0; i < pNextScene.GetNumOfRow(); i++)
 		{
 			tempCursorStart = { TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + i) };
 			SetConsoleCursorPosition(console, tempCursorStart);
 
-			std::string val = nextScene.GetSceneRow(i);
+			std::string val = pNextScene.GetSceneRow(i);
 			std::cout << val << '\n';
 			//std::cout << nextScene.GetSceneRow(i) << '\n';
 		}

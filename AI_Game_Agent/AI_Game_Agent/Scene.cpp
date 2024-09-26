@@ -118,7 +118,7 @@ namespace AI_Game_Agent
 		}
 	}
 
-	std::string Scene::GetSceneRow(uint8_t rowNum)
+	std::string Scene::GetSceneRow(uint8_t rowNum) const
 	{
 		assert(rowNum < _numOfRows);
 		//assert((sizeof(charArray) / sizeof(charArray[0])) == _numOfCols); // can't have this check because its a pointer
@@ -128,6 +128,24 @@ namespace AI_Game_Agent
 		for (int i = 0; i < _numOfCols; i++)
 		{
 			rtnVal[i] = sceneData[(_numOfCols * rowNum) + i];
+		}
+
+		return rtnVal;
+	}
+
+
+	std::string Scene::GetSceneColumn(uint8_t colNum) const
+	{
+		// includes floor
+		
+		assert(colNum < _numOfCols);
+		//assert((sizeof(charArray) / sizeof(charArray[0])) == _numOfCols); // can't have this check because its a pointer
+
+		std::string rtnVal(_numOfCols, ' ');
+
+		for (int i = 0; i < _numOfRows; i++)
+		{
+			rtnVal[i] = sceneData[(_numOfCols * i) + colNum];
 		}
 
 		return rtnVal;
@@ -163,12 +181,12 @@ namespace AI_Game_Agent
 		sceneData[(_numOfCols * (_numOfRows - 1)) + (_numOfCols - 1)] = converterFloor[0];
 	}
 
-	uint8_t Scene::GetNumOfCol()
+	uint8_t Scene::GetNumOfCol() const
 	{
 		return _numOfCols;
 	}
 
-	uint8_t Scene::GetNumOfRow()
+	uint8_t Scene::GetNumOfRow() const
 	{
 		return _numOfRows;
 	}

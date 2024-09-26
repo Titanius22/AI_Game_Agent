@@ -7,8 +7,9 @@ namespace AI_Game_Agent
 	{
 	public:
 
-		enum PlayerPos
+		enum class PlayerPos
 		{
+			undecided,
 			NORMAL,
 			JUMP,
 			DIVE,
@@ -29,10 +30,13 @@ namespace AI_Game_Agent
 		};
 
 		// Default constructor
-		Scene(uint8_t numOfRows, uint8_t numOfCols);
+		Scene() = delete;
 		Scene(const Scene&) = delete;
 		Scene& operator = (const Scene&) = delete;
 		~Scene();
+
+		// Special contructor
+		Scene(uint8_t numOfRows, uint8_t numOfCols);
 
 		void SetPlayer(PlayerPos playerPos);
 		void SetFloor(uint8_t data[]);
@@ -41,13 +45,14 @@ namespace AI_Game_Agent
 		void SetTerrainCol(uint8_t col, uint8_t data[]);
 		void SetTerrainRow(uint8_t row, uint8_t data[]);
 
-		std::string GetSceneRow(uint8_t rowNum);
+		std::string GetSceneRow(uint8_t rowNum) const;
+		std::string GetSceneColumn(uint8_t colNum) const;
 
 		void ClearScene();
 		void ProgressScene();
 
-		uint8_t GetNumOfCol();
-		uint8_t GetNumOfRow();
+		uint8_t GetNumOfCol() const;
+		uint8_t GetNumOfRow() const;
 
 	private:
 		const char converterTerrain[3] = {' ', 'x', 'o'};

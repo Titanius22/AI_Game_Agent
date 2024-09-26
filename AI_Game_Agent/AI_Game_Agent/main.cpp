@@ -14,7 +14,7 @@ int main()
 
     //AI_Game_Agent::ConsoleAnimationMan::RunAnimation_allTerrain();
     //AI_Game_Agent::ConsoleAnimationMan::RunAnimation_noPlayer();
-    AI_Game_Agent::ConsoleAnimationMan::RunAnimation_withPlayer();
+    //AI_Game_Agent::ConsoleAnimationMan::RunAnimation_withPlayer();
 
     //std::cout << "hello world";
 }

@@ -67,10 +67,12 @@ namespace AI_Game_Agent
 			// Advance Scene
 			pGE->pActiveScene->ProgressScene();
 
-			// mode player and give player score
+			// mode player
 			pGE->pActiveScene->SetPlayer(playerMove);
 			
-			// // generate scene
+			// and give player score
+
+			// generate new last column of scene
 
 			// Display to screen
 			ConsoleAnimationMan::updateScreen(*(pGE->pActiveScene));

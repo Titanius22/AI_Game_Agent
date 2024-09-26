@@ -401,15 +401,18 @@ namespace AI_Game_Agent
 
 	void ConsoleAnimationMan::updateScreen(Scene& pNextScene)
 	{
+		ConsoleAnimationMan* pCAM = ConsoleAnimationMan::privGetInstance();
+		assert(pCAM);
+
 		HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
-		clearScreen();
+		pCAM->clearScreen();
 		COORD tempCursorStart;
 		int i;
 
 		for (i = 0; i < pNextScene.GetNumOfRow(); i++)
 		{
-			tempCursorStart = { TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + i) };
+			tempCursorStart = { pCAM->TOPLEFT_CURS_LOC.X, short(pCAM->TOPLEFT_CURS_LOC.Y + i) };
 			SetConsoleCursorPosition(console, tempCursorStart);
 
 			std::string val = pNextScene.GetSceneRow(i);

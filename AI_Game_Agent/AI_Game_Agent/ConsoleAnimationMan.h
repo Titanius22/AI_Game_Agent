@@ -20,6 +20,7 @@ namespace AI_Game_Agent
 
 		static void SetCycleTime(uint32_t newCycleTime);
 		static uint32_t GetCycleTime();
+		static void updateScreen(Scene& pNextScene);
 		
 
 		// Default constructor
@@ -52,7 +53,6 @@ namespace AI_Game_Agent
 
 		void loadNextTerrainScreen(int numCol, int numRow, std::string sceneData);
 		//void loadNextFloorScreen(int numCol, std::string sceneData);
-		void updateScreen(Scene& pNextScene);
 
 	};
 }

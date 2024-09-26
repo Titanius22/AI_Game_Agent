@@ -10,7 +10,10 @@ int main()
 {
 
     AI_Game_Agent::ConsoleAnimationMan::Create();
-    AI_Game_Agent::GameEngine::Create();
+    AI_Game_Agent::GameEngine::Create(AI_Game_Agent::GameEngine::PlayerType::HUMAN);
+
+    AI_Game_Agent::GameEngine::Run();
+
 
     //AI_Game_Agent::ConsoleAnimationMan::RunAnimation_allTerrain();
     //AI_Game_Agent::ConsoleAnimationMan::RunAnimation_noPlayer();

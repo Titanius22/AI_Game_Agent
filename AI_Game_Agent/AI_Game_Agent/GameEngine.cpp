@@ -2,6 +2,7 @@
 #include <cassert>
 #include "Player_Human.h"
 #include "ConsoleAnimationMan.h"
+#include "SceneManager.h"
 
 namespace AI_Game_Agent
 {
@@ -40,6 +41,10 @@ namespace AI_Game_Agent
 
 		this->numRowsDisplayed = 4;
 		this->numColsDisplayed = 4;
+
+		this->pActiveScene = nullptr;
+		this->pBufferScene = nullptr;
+		this->colCounter = 0;
 	}
 
 	GameEngine* GameEngine::privGetInstance()
@@ -54,7 +59,7 @@ namespace AI_Game_Agent
 		GameEngine* pGE = GameEngine::privGetInstance();
 		assert(pGE);
 		
-		pGE->GenerateStartingScene_noPlayer();
+		pGE->pActiveScene = SceneManager::GetStartingScene();
 		
 		while(true)
 		{
@@ -79,16 +84,16 @@ namespace AI_Game_Agent
 		}
 	}
 
-	void GameEngine::GenerateStartingScene_noPlayer()
-	{
-		this->pActiveScene = new Scene(numRowsDisplayed, numColsDisplayed);
-		
-		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
-		uint8_t startingFloor[] = { 1,1,1,1 };
-		this->pActiveScene->SetTerrain(numColsDisplayed, numRowsDisplayed-1, startingTerrain);
-		this->pActiveScene->SetFloor(startingFloor);
-		ConsoleAnimationMan::updateScreen(*this->pActiveScene);
-	}
+	//void GameEngine::GenerateStartingScene_noPlayer()
+	//{
+	//	this->pActiveScene = new Scene(numRowsDisplayed, numColsDisplayed);
+	//	
+	//	uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
+	//	uint8_t startingFloor[] = { 1,1,1,1 };
+	//	this->pActiveScene->SetTerrain(numColsDisplayed, numRowsDisplayed-1, startingTerrain);
+	//	this->pActiveScene->SetFloor(startingFloor);
+	//	ConsoleAnimationMan::updateScreen(*this->pActiveScene);
+	//}
 
 	void GenerateBufferScene(Scene& scene)
 	{

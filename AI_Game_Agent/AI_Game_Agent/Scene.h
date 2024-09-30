@@ -45,8 +45,10 @@ namespace AI_Game_Agent
 		void SetTerrainCol(uint8_t col, uint8_t data[]);
 		void SetTerrainRow(uint8_t row, uint8_t data[]);
 
-		std::string GetSceneRow(uint8_t rowNum) const;
-		std::string GetSceneColumn(uint8_t colNum) const;
+		void GetSceneRow(uint8_t rowNum, uint8_t* rtnVal) const;
+		std::string GetSceneRow_string(uint8_t rowNum) const;
+		void GetSceneColumn(uint8_t colNum, uint8_t* rtnVal) const;
+		std::string GetSceneColumn_string(uint8_t colNum) const;
 
 		void ClearScene();
 		void ProgressScene();
@@ -62,6 +64,8 @@ namespace AI_Game_Agent
 		uint8_t _numOfRows; // includes floor
 		uint8_t _numOfCols;
 
-		char* sceneData; //row, col
+		char* _sceneData; //row, col
+		PlayerPos _sceneData_Player;
+
 	};
 }

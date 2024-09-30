@@ -33,7 +33,7 @@ namespace AI_Game_Agent
 		IPlayer* _pPlayer;
 		Scene* pActiveScene;
 		Scene* pBufferScene;
-		uint32_t rowCounter; // number of rows generated and displayed on screen
+		uint32_t colCounter; // number of columns generated and displayed on screen
 
 		uint8_t numRowsDisplayed;
 		uint8_t numColsDisplayed;

@@ -136,6 +136,7 @@
     <ClCompile Include="ConsoleAnimationMan.cpp" />
     <ClCompile Include="Player_Human.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleAnimationMan.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="IPlayer.h" />
     <ClInclude Include="Player_Human.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

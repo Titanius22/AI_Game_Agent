@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ConsoleAnimationMan.h"
 #include "GameEngine.h"
+#include "SceneManager.h"
 
 
 int main()
@@ -11,6 +12,7 @@ int main()
 
     AI_Game_Agent::ConsoleAnimationMan::Create();
     AI_Game_Agent::GameEngine::Create(AI_Game_Agent::GameEngine::PlayerType::HUMAN);
+    AI_Game_Agent::SceneManager::Create();
 
     AI_Game_Agent::GameEngine::Run();
 

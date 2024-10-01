@@ -60,6 +60,7 @@ namespace AI_Game_Agent
 		assert(pGE);
 		
 		pGE->pActiveScene = SceneManager::GetStartingScene();
+		pGE->pActiveScene->SetPlayer(Scene::PlayerPos::NORMAL); //doesn't matter, just need something to start things out
 		
 		while(true)
 		{
@@ -72,12 +73,15 @@ namespace AI_Game_Agent
 			// Advance Scene
 			pGE->pActiveScene->ProgressScene();
 
+			// generate new last column of scene
+			uint8_t dumbData[] = { Scene::TerrainEnum::OBSTICLE, Scene::TerrainEnum::EMPTY, Scene::TerrainEnum::EMPTY };
+			pGE->pActiveScene->SetTerrainCol(pGE->pActiveScene->GetNumOfCols()-1, dumbData);
+			pGE->pActiveScene->SetSceneWithoutPlayerUpdateCompleted();
+
 			// mode player
 			pGE->pActiveScene->SetPlayer(playerMove);
 			
 			// and give player score
-
-			// generate new last column of scene
 
 			// Display to screen
 			ConsoleAnimationMan::updateScreen(*(pGE->pActiveScene));

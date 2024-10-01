@@ -50,6 +50,7 @@ namespace AI_Game_Agent
 		void SetTerrain(uint8_t numCol, uint8_t numRow, uint8_t data[]);
 		void SetTerrainCol(uint8_t col, uint8_t data[]);
 		void SetTerrainRow(uint8_t row, uint8_t data[]);
+		void SetSceneWithoutPlayerUpdateCompleted();
 
 		void GetSceneRow(uint8_t rowNum, uint8_t* rtnVal) const;
 		std::string GetSceneRow_string(uint8_t rowNum) const;

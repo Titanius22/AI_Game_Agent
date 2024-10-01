@@ -10,7 +10,7 @@ namespace AI_Game_Agent
 		//static void Destroy();
 
 		static Scene* GetStartingScene();
-		static Scene* GetNewScene(const uint8_t const numOfCols, uint8_t seedNum);
+		static Scene* GetNewScene(const uint8_t numOfCols, uint8_t seedNum);
 
 		// Default constructor
 		SceneManager(const SceneManager&) = delete;

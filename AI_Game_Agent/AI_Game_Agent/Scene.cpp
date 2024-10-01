@@ -38,7 +38,7 @@ namespace AI_Game_Agent
 
 		_sceneData_Player = playerPos;
 
-		_currSceneMode == SceneMode::PLAYER_UPDATED;
+		_currSceneMode = SceneMode::PLAYER_UPDATED;
 
 		WriteToChar();
 	}
@@ -102,11 +102,10 @@ namespace AI_Game_Agent
 		//assert((sizeof(charArray) / sizeof(charArray[0])) == _numOfCols); // can't have this check because its a pointer
 
 		std::string rtnVal(_numOfRows, ' ');
-		uint8_t buffVal;
 
 		for (int colNum = 0; colNum < _numOfCols; colNum++)
 		{
-			rtnVal[rowNum] = _sceneData_char[(_numOfCols * rowNum) + colNum];
+			rtnVal[colNum] = _sceneData_char[(_numOfCols * rowNum) + colNum];
 		}
 
 		return rtnVal;
@@ -199,7 +198,7 @@ namespace AI_Game_Agent
 		}
 		_sceneData[(_numOfCols * (_numOfRows - 1)) + (_numOfCols - 1)] = FloorEnum::SOLID;
 	
-		_currSceneMode == SceneMode::SCENE_PROGRESSED;
+		_currSceneMode = SceneMode::SCENE_PROGRESSED;
 	}
 
 	uint8_t Scene::GetNumOfCols() const
@@ -210,6 +209,11 @@ namespace AI_Game_Agent
 	uint8_t Scene::GetNumOfRows() const
 	{
 		return _numOfRows;
+	}
+
+	void Scene::SetSceneWithoutPlayerUpdateCompleted()
+	{
+		_currSceneMode = SceneMode::SCENE_UPDATED__LAST_ROW;
 	}
 
 	/// <summary>

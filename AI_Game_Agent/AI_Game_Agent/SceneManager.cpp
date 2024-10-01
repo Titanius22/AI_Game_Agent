@@ -52,10 +52,11 @@ namespace AI_Game_Agent
 		uint8_t startingFloor[] = { 1,1,1,1 };
 		pSM->poStartingScene->SetTerrain(numColsDisplayed, SceneManager::NUM_OF_ROWS - 1, startingTerrain);
 		pSM->poStartingScene->SetFloor(startingFloor);
+		pSM->poStartingScene->SetSceneWithoutPlayerUpdateCompleted();
 		return pSM->poStartingScene;
 	}
 
-	Scene* SceneManager::GetNewScene(const uint8_t const numOfCols, uint8_t seedNum)
+	Scene* SceneManager::GetNewScene(const uint8_t numOfCols, uint8_t seedNum)
 	{
 		SceneManager* pSM = SceneManager::privGetInstance();
 		assert(pSM);
@@ -63,33 +64,41 @@ namespace AI_Game_Agent
 		if (numOfCols == 2)
 		{
 			pSM->poBufferScene_2cols = new(pSM->poBufferScene_2cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols, Scene::SceneType::BUFFER);
-			uint8_t terrain[] = { 0,0,0,0,0,0 }; // not used, here just to shut up complier
+			uint8_t terrain[] = { 0,0,0,0,0,0 };
 			switch (seedNum) {
 				case 0:
 					// do nothing, Scene already cleared
-					uint8_t terrain[] = { 0,0,0,0,0,0 };
+					// { 0,0,0,0,0,0 };
 					break;
 				case 1:
-					uint8_t terrain[] = { 0,1,0,0,0,0 };
+					// { 0,1,0,0,0,0 };
+					terrain[1] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 2:
-					uint8_t terrain[] = { 0,0,0,1,0,0 };
+					// { 0,0,0,1,0,0 };
+					terrain[3] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 3:
-					uint8_t terrain[] = { 0,0,0,0,0,1 };
+					// { 0,0,0,0,0,1 };
+					terrain[5] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 4:
-					uint8_t terrain[] = { 0,1,0,1,0,0 };
+					// { 0,1,0,1,0,0 };
+					terrain[1] = Scene::TerrainEnum::OBSTICLE;
+					terrain[3] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 5:
-					uint8_t terrain[] = { 0,0,0,1,0,1 };
+					// { 0,0,0,1,0,1 };
+					terrain[3] = Scene::TerrainEnum::OBSTICLE;
+					terrain[5] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 6:
-					uint8_t terrain[] = { 0,1,0,0,0,1 };
+					// { 0,1,0,0,0,1 };
+					terrain[1] = Scene::TerrainEnum::OBSTICLE;
+					terrain[5] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				default:
 					assert(false);
-					uint8_t terrain[] = { 0,0,0,0,0,0 };
 			}
 			pSM->poStartingScene->SetTerrain(numOfCols, SceneManager::NUM_OF_ROWS - 1, terrain);
 
@@ -101,34 +110,45 @@ namespace AI_Game_Agent
 		else if (numOfCols == 3)
 		{
 			pSM->poBufferScene_3cols = new(pSM->poBufferScene_3cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols, Scene::SceneType::BUFFER);
-			uint8_t terrain[] = { 0,0,0,0,0,0,0,0,0 }; // not used, here just to shut up complier
+			uint8_t terrain[] = { 0,0,0,0,0,0,0,0,0 };
 			
 			switch (seedNum) {
 				case 0:
 					// do nothing, Scene already cleared
-					uint8_t terrain[] = { 0,0,0,0,0,0,0,0,0 };
+					// { 0,0,0,0,0,0,0,0,0 };
 					break;
 				case 1:
-					uint8_t terrain[] = { 0,0,0,0,0,1,0,1,0 };
+					// { 0,0,0,0,0,1,0,1,0 };
+					terrain[5] = Scene::TerrainEnum::OBSTICLE;
+					terrain[7] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 2:
-					uint8_t terrain[] = { 0,1,0,0,0,1,0,0,0 };
+					// { 0,1,0,0,0,1,0,0,0 };
+					terrain[1] = Scene::TerrainEnum::OBSTICLE;
+					terrain[5] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 3:
-					uint8_t terrain[] = { 0,0,1,0,1,0,0,0,0 };
+					// { 0,0,1,0,1,0,0,0,0 };
+					terrain[2] = Scene::TerrainEnum::OBSTICLE;
+					terrain[4] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 4:
-					uint8_t terrain[] = { 0,0,0,0,1,0,0,0,1 };
+					// { 0,0,0,0,1,0,0,0,1 };
+					terrain[4] = Scene::TerrainEnum::OBSTICLE;
+					terrain[8] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 5:
-					uint8_t terrain[] = { 0,1,0,0,0,0,0,0,1 };
+					// { 0,1,0,0,0,0,0,0,1 };
+					terrain[1] = Scene::TerrainEnum::OBSTICLE;
+					terrain[8] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				case 6:
-					uint8_t terrain[] = { 0,0,1,0,0,0,0,1,0 };
+					// { 0,0,1,0,0,0,0,1,0 };
+					terrain[2] = Scene::TerrainEnum::OBSTICLE;
+					terrain[7] = Scene::TerrainEnum::OBSTICLE;
 					break;
 				default:
 					assert(false);
-					uint8_t terrain[] = { 0,0,0,0,0,0,0,0,0 };
 			}
 			pSM->poBufferScene_3cols->SetTerrain(numOfCols, SceneManager::NUM_OF_ROWS - 1, terrain);
 
@@ -140,6 +160,7 @@ namespace AI_Game_Agent
 		else
 		{
 			assert(false);
+			return nullptr;
 		}
 	}
 }

@@ -9,9 +9,9 @@ namespace AI_Game_Agent
 	SceneManager::SceneManager()
 	{
 		poStartingScene     = nullptr;
-		poBufferScene_2cols = new Scene(SceneManager::NUM_OF_ROWS, 2);
-		poBufferScene_3cols = new Scene(SceneManager::NUM_OF_ROWS, 3);
-		poBufferScene_4cols = new Scene(SceneManager::NUM_OF_ROWS, 4);
+		poBufferScene_2cols = new Scene(SceneManager::NUM_OF_ROWS, 2, Scene::SceneType::BUFFER);
+		poBufferScene_3cols = new Scene(SceneManager::NUM_OF_ROWS, 3, Scene::SceneType::BUFFER);
+		poBufferScene_4cols = new Scene(SceneManager::NUM_OF_ROWS, 4, Scene::SceneType::BUFFER);
 	}
 
 	SceneManager::~SceneManager()
@@ -19,10 +19,6 @@ namespace AI_Game_Agent
 		if (poStartingScene     != nullptr) {delete poStartingScene    ;};
 		if (poBufferScene_3cols != nullptr) {delete poBufferScene_3cols;};
 		if (poBufferScene_4cols != nullptr) {delete poBufferScene_4cols;};
-		if (poBufferScene_5cols != nullptr) {delete poBufferScene_5cols;};
-		if (poBufferScene_6cols != nullptr) {delete poBufferScene_6cols;};
-		if (poBufferScene_7cols != nullptr) {delete poBufferScene_7cols;};
-		if (poBufferScene_8cols != nullptr) {delete poBufferScene_8cols;};
 		
 		SceneManager* pCAM = SceneManager::privGetInstance();
 		delete pCAM;
@@ -50,7 +46,7 @@ namespace AI_Game_Agent
 		assert(pSM->poStartingScene == nullptr);
 
 		uint8_t numColsDisplayed = 4;
-		pSM->poStartingScene = new Scene(SceneManager::NUM_OF_ROWS, numColsDisplayed);
+		pSM->poStartingScene = new Scene(SceneManager::NUM_OF_ROWS, numColsDisplayed, Scene::SceneType::ACTIVE);
 
 		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
 		uint8_t startingFloor[] = { 1,1,1,1 };
@@ -66,7 +62,7 @@ namespace AI_Game_Agent
 
 		if (numOfCols == 2)
 		{
-			pSM->poBufferScene_2cols = new(pSM->poBufferScene_2cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols);
+			pSM->poBufferScene_2cols = new(pSM->poBufferScene_2cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols, Scene::SceneType::BUFFER);
 			uint8_t terrain[] = { 0,0,0,0,0,0 }; // not used, here just to shut up complier
 			switch (seedNum) {
 				case 0:
@@ -104,7 +100,7 @@ namespace AI_Game_Agent
 		}
 		else if (numOfCols == 3)
 		{
-			pSM->poBufferScene_3cols = new(pSM->poBufferScene_3cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols);
+			pSM->poBufferScene_3cols = new(pSM->poBufferScene_3cols) Scene(SceneManager::NUM_OF_ROWS, numOfCols, Scene::SceneType::BUFFER);
 			uint8_t terrain[] = { 0,0,0,0,0,0,0,0,0 }; // not used, here just to shut up complier
 			
 			switch (seedNum) {

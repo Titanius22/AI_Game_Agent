@@ -29,6 +29,12 @@ namespace AI_Game_Agent
 			SOLID = 1
 		};
 
+		enum class SceneType
+		{
+			ACTIVE,    // actively updated, progressed, player set, repeat
+			BUFFER     // just a holder of scene data
+		};
+
 		// Default constructor
 		Scene() = delete;
 		Scene(const Scene&) = delete;
@@ -36,11 +42,11 @@ namespace AI_Game_Agent
 		~Scene();
 
 		// Special contructor
-		Scene(uint8_t numOfRows, uint8_t numOfCols);
+		Scene(uint8_t numOfRows, uint8_t numOfCols, SceneType sceneType);
 
 		void SetPlayer(PlayerPos playerPos);
 		void SetFloor(uint8_t data[]);
-		void SetFloor(uint8_t col, uint8_t data);
+		void SetFloor(uint8_t col, FloorEnum data);
 		void SetTerrain(uint8_t numCol, uint8_t numRow, uint8_t data[]);
 		void SetTerrainCol(uint8_t col, uint8_t data[]);
 		void SetTerrainRow(uint8_t row, uint8_t data[]);
@@ -53,10 +59,21 @@ namespace AI_Game_Agent
 		void ClearScene();
 		void ProgressScene();
 
-		uint8_t GetNumOfCol() const;
-		uint8_t GetNumOfRow() const;
+		uint8_t GetNumOfCols() const;
+		uint8_t GetNumOfRows() const;
 
 	private:
+		enum class SceneMode
+		{
+			SCENE_NEW,               // newly created, should only enter this mode once
+			SCENE_PROGRESSED,        // Scene progressed from last frame
+			SCENE_UPDATED__LAST_ROW, // after scene progressed, last column was populated
+			PLAYER_UPDATED,          // Player position updated, new mode is SCENE_PROGRESSED
+
+			NA__BUFFER_SCENE         // not part of sequence, used if its a buffer scene
+			                         // meaning it just stores data.
+		};
+		
 		const char converterTerrain[3] = {' ', 'x', 'o'};
 		const char converterFloor[2]   = {' ', '-'     };
 		const char converterPlayer[3]  = {' ', '#', '='};
@@ -64,8 +81,14 @@ namespace AI_Game_Agent
 		uint8_t _numOfRows; // includes floor
 		uint8_t _numOfCols;
 
-		char* _sceneData; //row, col
+		uint8_t* _sceneData; //row, col
+		char* _sceneData_char; //row, col
 		PlayerPos _sceneData_Player;
-
+		SceneType _sceneType;
+		SceneMode _currSceneMode;
+		
+		void ClearTerrain();
+		void ClearFloor();
+		void WriteToChar();
 	};
 }

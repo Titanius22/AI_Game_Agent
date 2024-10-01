@@ -51,7 +51,7 @@ namespace AI_Game_Agent
 		void showLoadingScreen();
 		void showBlinkingLights();
 
-		void loadNextTerrainScreen(int numCol, int numRow, std::string sceneData);
+		//void loadNextTerrainScreen(Scene* sceneData);
 		//void loadNextFloorScreen(int numCol, std::string sceneData);
 
 	};

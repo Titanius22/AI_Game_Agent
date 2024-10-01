@@ -39,7 +39,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 1,0,0,0,0,1,0,0,0,0,1,1};
 		uint8_t startingFloor[] = { 1,1,0,1 };
-		Scene scene(4, 4);
+		Scene scene(4, 4, Scene::SceneType::ACTIVE);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		pCAM->updateScreen(scene);
@@ -48,7 +48,7 @@ namespace AI_Game_Agent
 		scene.ProgressScene();
 		uint8_t lastColTerrain[] = { 0, 1, 0 };
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -57,7 +57,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -66,7 +66,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 1;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -75,7 +75,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 1;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -84,7 +84,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 1;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -99,7 +99,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
 		uint8_t startingFloor[] = { 1,1,1,1 };
-		Scene scene(4, 4);
+		Scene scene(4, 4, Scene::SceneType::ACTIVE);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		pCAM->updateScreen(scene);
@@ -108,7 +108,7 @@ namespace AI_Game_Agent
 		scene.ProgressScene();
 		uint8_t lastColTerrain[] = { 0, 0, 0 };
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -117,7 +117,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -126,7 +126,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -135,7 +135,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -144,7 +144,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 1;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -153,7 +153,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -162,7 +162,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -171,7 +171,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -180,7 +180,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
 
@@ -195,7 +195,7 @@ namespace AI_Game_Agent
 
 		uint8_t startingTerrain[] = { 0,0,0,0,0,0,0,0,0,0,1,0 };
 		uint8_t startingFloor[] = { 1,1,1,1 };
-		Scene scene(4, 4);
+		Scene scene(4, 4, Scene::SceneType::ACTIVE);
 		scene.SetTerrain(4, 3, startingTerrain);
 		scene.SetFloor(startingFloor);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
@@ -205,7 +205,7 @@ namespace AI_Game_Agent
 		scene.ProgressScene();
 		uint8_t lastColTerrain[] = { 0, 0, 0 };
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -215,7 +215,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::JUMP);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -225,7 +225,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -235,7 +235,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -245,7 +245,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 1;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::DUCK);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -255,7 +255,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -265,7 +265,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -275,7 +275,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::DIVE);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -285,7 +285,7 @@ namespace AI_Game_Agent
 		lastColTerrain[1] = 0;
 		lastColTerrain[2] = 0;
 		scene.SetTerrainCol(3, lastColTerrain);
-		scene.SetFloor(3, 1);
+		scene.SetFloor(3, Scene::SOLID);
 		scene.SetPlayer(Scene::PlayerPos::NORMAL);
 		pCAM->updateScreen(scene);
 		Sleep(pCAM->cycleTime);
@@ -316,30 +316,31 @@ namespace AI_Game_Agent
 		SetConsoleCursorPosition(console, TOPLEFT_CURS_LOC);
 	}
 
-	void ConsoleAnimationMan::loadNextTerrainScreen(int numCol, int numRow, std::string sceneData)
-	{
-		assert(sceneData.length() == numCol * numRow);
-		
-		HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-		
-		clearScreen();
-		COORD tempCursorStart;
-		int i;
+	//void ConsoleAnimationMan::loadNextTerrainScreen(Scene* sceneData)
+	//{
+	//	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	//	
+	//	clearScreen();
+	//	COORD tempCursorStart;
+	//	uint8_t rowNum;
 
-		for (i=0; i < numRow; i++)
-		{
-			tempCursorStart = {TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + i)};
-			SetConsoleCursorPosition(console, tempCursorStart);
-			std::cout << sceneData.substr(i*numCol, numCol) << '\n';
-		}
+	//	uint8_t numOfRows = sceneData->GetNumOfRows();
+	//	uint8_t numOfCols = sceneData->GetNumOfCols();
 
-		tempCursorStart = { TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + i) };
-		SetConsoleCursorPosition(console, tempCursorStart);
-		for (i = 0; i < numCol; i++)
-		{
-			std::cout << '-';
-		}
-	}
+	//	for (rowNum =0; rowNum < numOfRows; rowNum++)
+	//	{
+	//		tempCursorStart = {TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + rowNum)};
+	//		SetConsoleCursorPosition(console, tempCursorStart);
+	//		std::cout << sceneData->GetSceneRow_string(rowNum) << '\n';
+	//	}
+
+	//	//tempCursorStart = { TOPLEFT_CURS_LOC.X, short(TOPLEFT_CURS_LOC.Y + i) };
+	//	//SetConsoleCursorPosition(console, tempCursorStart);
+	//	//for (i = 0; i < numOfCols; i++)
+	//	//{
+	//	//	std::cout << '-';
+	//	//}
+	//}
 
 	void ConsoleAnimationMan::changeColour(int colour) {
 		HANDLE hConsole;
@@ -408,16 +409,15 @@ namespace AI_Game_Agent
 
 		pCAM->clearScreen();
 		COORD tempCursorStart;
-		int i;
+		uint8_t numOfRows = pNextScene.GetNumOfRows();
+		int rowNum;
 
-		for (i = 0; i < pNextScene.GetNumOfRow(); i++)
+		for (rowNum = 0; rowNum < numOfRows; rowNum++)
 		{
-			tempCursorStart = { pCAM->TOPLEFT_CURS_LOC.X, short(pCAM->TOPLEFT_CURS_LOC.Y + i) };
+			tempCursorStart = { pCAM->TOPLEFT_CURS_LOC.X, short(pCAM->TOPLEFT_CURS_LOC.Y + rowNum) };
 			SetConsoleCursorPosition(console, tempCursorStart);
 
-			std::string val = pNextScene.GetSceneRow(i);
-			std::cout << val << '\n';
-			//std::cout << nextScene.GetSceneRow(i) << '\n';
+			std::cout << pNextScene.GetSceneRow_string(rowNum) << '\n';
 		}
 	}
 

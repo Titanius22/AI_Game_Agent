@@ -3,6 +3,7 @@
 #include "Player_Human.h"
 #include "ConsoleAnimationMan.h"
 #include "SceneManager.h"
+#include "Util.h"
 
 namespace AI_Game_Agent
 {
@@ -44,7 +45,6 @@ namespace AI_Game_Agent
 
 		this->pActiveScene = nullptr;
 		this->pBufferScene = nullptr;
-		this->colCounter = 0;
 	}
 
 	GameEngine* GameEngine::privGetInstance()
@@ -62,6 +62,11 @@ namespace AI_Game_Agent
 		pGE->pActiveScene = SceneManager::GetStartingScene();
 		pGE->pActiveScene->SetPlayer(Scene::PlayerPos::NORMAL); //doesn't matter, just need something to start things out
 		
+		// Create buffer Scene
+		pGE->pBufferScene = SceneManager::GetNewScene();
+		uint8_t buffNumOfCols = pGE->pBufferScene->GetNumOfCols();
+		uint8_t buffColIdx = 0;
+		
 		while(true)
 		{
 			// give scene to Player
@@ -74,9 +79,17 @@ namespace AI_Game_Agent
 			pGE->pActiveScene->ProgressScene();
 
 			// generate new last column of scene
-			uint8_t dumbData[] = { Scene::TerrainEnum::OBSTICLE, Scene::TerrainEnum::EMPTY, Scene::TerrainEnum::EMPTY };
-			pGE->pActiveScene->SetTerrainCol(pGE->pActiveScene->GetNumOfCols()-1, dumbData);
+			pGE->pActiveScene->SetTerrainCol(pGE->pActiveScene->GetNumOfCols()-1, pGE->pBufferScene, buffColIdx);
 			pGE->pActiveScene->SetSceneWithoutPlayerUpdateCompleted();
+			buffColIdx++;
+
+			// Generate new buffer Scene if existing ran out of new data
+			if (buffColIdx == buffNumOfCols)
+			{
+				pGE->pBufferScene = SceneManager::GetNewScene();
+				buffNumOfCols = pGE->pBufferScene->GetNumOfCols();
+				buffColIdx = 0;
+			}
 
 			// mode player
 			pGE->pActiveScene->SetPlayer(playerMove);

@@ -46,10 +46,11 @@ namespace AI_Game_Agent
 
 		void SetPlayer(PlayerPos playerPos);
 		void SetFloor(uint8_t data[]);
-		void SetFloor(uint8_t col, FloorEnum data);
+		void SetFloor(uint8_t colNum, FloorEnum data);
 		void SetTerrain(uint8_t numCol, uint8_t numRow, uint8_t data[]);
-		void SetTerrainCol(uint8_t col, uint8_t data[]);
-		void SetTerrainRow(uint8_t row, uint8_t data[]);
+		void SetTerrainCol(uint8_t colNum, uint8_t data[]);
+		void SetTerrainCol(uint8_t colToOverwrite, const Scene* scene, uint8_t colToCopy);
+		void SetTerrainRow(uint8_t rowNum, uint8_t data[]);
 		void SetSceneWithoutPlayerUpdateCompleted();
 
 		void GetSceneRow(uint8_t rowNum, uint8_t* rtnVal) const;

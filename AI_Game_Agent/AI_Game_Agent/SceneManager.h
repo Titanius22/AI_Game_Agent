@@ -10,6 +10,7 @@ namespace AI_Game_Agent
 		//static void Destroy();
 
 		static Scene* GetStartingScene();
+		static Scene* GetNewScene();
 		static Scene* GetNewScene(const uint8_t numOfCols, uint8_t seedNum);
 
 		// Default constructor
@@ -27,6 +28,8 @@ namespace AI_Game_Agent
 		Scene* poBufferScene_2cols;
 		Scene* poBufferScene_3cols;
 		Scene* poBufferScene_4cols;
+		uint32_t bufferSceneCounter; // number of buffer Scenes generated and displayed on screen
+
 
 		// Default constructor
 		SceneManager();

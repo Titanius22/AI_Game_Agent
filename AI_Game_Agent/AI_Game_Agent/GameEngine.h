@@ -33,7 +33,6 @@ namespace AI_Game_Agent
 		IPlayer* _pPlayer;
 		Scene* pActiveScene;
 		Scene* pBufferScene;
-		uint32_t colCounter; // number of columns generated and displayed on screen
 
 		uint8_t numRowsDisplayed;
 		uint8_t numColsDisplayed;
@@ -42,7 +41,7 @@ namespace AI_Game_Agent
 		GameEngine(PlayerType inputPlayerType);
 
 		static GameEngine* privGetInstance();
-		void GenerateStartingScene_noPlayer();
-		void GenerateBufferScene(Scene& scene);
+		//void GenerateStartingScene_noPlayer();
+		//void GenerateBufferScene(Scene& scene);
 	};
 }

@@ -81,6 +81,19 @@ namespace AI_Game_Agent
 			_sceneData[(_numOfCols * rowNum) + colNum] = data[rowNum];
 		}
 	}
+
+
+	void Scene::SetTerrainCol(uint8_t colToOverwrite, const Scene* scene, uint8_t colToCopy)
+	{
+		assert(colToOverwrite < _numOfCols);
+		assert(colToCopy < scene->_numOfCols);
+		assert(_numOfRows == scene->_numOfRows);
+
+		for (int rowNum = 0; rowNum < (_numOfRows - 1); rowNum++) // -1 to prevent this from modifing the Floor
+		{
+			_sceneData[(_numOfCols * rowNum) + colToOverwrite] = scene->_sceneData[(scene->_numOfCols * rowNum) + colToCopy];
+		}
+	}
 	
 	void Scene::SetTerrainRow(uint8_t rowNum, uint8_t data[])
 	{

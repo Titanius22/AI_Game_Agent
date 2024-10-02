@@ -59,9 +59,13 @@ namespace AI_Game_Agent
 		GameEngine* pGE = GameEngine::privGetInstance();
 		assert(pGE);
 		
+		// set up Ative Scene
 		pGE->pActiveScene = SceneManager::GetStartingScene();
 		pGE->pActiveScene->SetPlayer(Scene::PlayerPos::NORMAL); //doesn't matter, just need something to start things out
-		
+
+		// dispaly screen
+		ConsoleAnimationMan::updateScreen(*(pGE->pActiveScene));
+
 		// Create buffer Scene
 		pGE->pBufferScene = SceneManager::GetNewScene();
 		uint8_t buffNumOfCols = pGE->pBufferScene->GetNumOfCols();

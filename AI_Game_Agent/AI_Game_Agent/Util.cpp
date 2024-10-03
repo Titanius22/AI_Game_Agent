@@ -255,4 +255,7 @@ namespace AI_Game_Agent
 		{2,	1},
 		{3, 0}
 	};
+	const int Util::Penalty_HitObsticle = -50;
+	const int Util::Reward_ProgressedOneCol = 10;
+	const int Util::Reward_CollectedCoin = 100;
 }

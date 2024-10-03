@@ -35,6 +35,13 @@ namespace AI_Game_Agent
 			BUFFER     // just a holder of scene data
 		};
 
+		enum CollisionType
+		{
+			NONE = 0,
+			REWARD_COIN = 1,
+			PENALTY_OBSTICLE = 2
+		};
+
 		// Default constructor
 		Scene() = delete;
 		Scene(const Scene&) = delete;
@@ -64,6 +71,8 @@ namespace AI_Game_Agent
 		uint8_t GetNumOfCols() const;
 		uint8_t GetNumOfRows() const;
 
+		CollisionType* GetCollisionResults();
+
 	private:
 		enum class SceneMode
 		{
@@ -85,6 +94,8 @@ namespace AI_Game_Agent
 
 		uint8_t* _sceneData; //row, col
 		char* _sceneData_char; //row, col
+		CollisionType* _collisionResults; // column 0 collision results
+
 		PlayerPos _sceneData_Player;
 		SceneType _sceneType;
 		SceneMode _currSceneMode;

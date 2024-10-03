@@ -20,7 +20,7 @@ namespace AI_Game_Agent
 
 		static void SetCycleTime(uint32_t newCycleTime);
 		static uint32_t GetCycleTime();
-		static void updateScreen(Scene& pNextScene);
+		static void updateScreen(Scene& pNextScene, int playerScore = 0);
 		
 
 		// Default constructor

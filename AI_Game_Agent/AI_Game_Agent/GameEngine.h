@@ -43,5 +43,8 @@ namespace AI_Game_Agent
 		static GameEngine* privGetInstance();
 		//void GenerateStartingScene_noPlayer();
 		//void GenerateBufferScene(Scene& scene);
+
+		int _playerScore;
+		void UpdatePlayerScore();
 	};
 }

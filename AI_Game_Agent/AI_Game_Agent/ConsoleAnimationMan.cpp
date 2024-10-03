@@ -1,6 +1,7 @@
 #include "ConsoleAnimationMan.h"
 #include "Scene.h"
 #include <cassert>
+#include <iomanip>
 
 namespace AI_Game_Agent
 {
@@ -400,7 +401,7 @@ namespace AI_Game_Agent
 		changeColour(WHITE);
 	}
 
-	void ConsoleAnimationMan::updateScreen(Scene& pNextScene)
+	void ConsoleAnimationMan::updateScreen(Scene& pNextScene, int playerScore)
 	{
 		ConsoleAnimationMan* pCAM = ConsoleAnimationMan::privGetInstance();
 		assert(pCAM);
@@ -412,6 +413,12 @@ namespace AI_Game_Agent
 		uint8_t numOfRows = pNextScene.GetNumOfRows();
 		int rowNum;
 
+		//  Print the score
+		tempCursorStart = { pCAM->TOPLEFT_CURS_LOC.X, short(pCAM->TOPLEFT_CURS_LOC.Y -2) };
+		SetConsoleCursorPosition(console, tempCursorStart);
+		std::cout << std::setfill('0') << std::setw(6) << playerScore << '\n';
+
+		// print the Scene
 		for (rowNum = 0; rowNum < numOfRows; rowNum++)
 		{
 			tempCursorStart = { pCAM->TOPLEFT_CURS_LOC.X, short(pCAM->TOPLEFT_CURS_LOC.Y + rowNum) };

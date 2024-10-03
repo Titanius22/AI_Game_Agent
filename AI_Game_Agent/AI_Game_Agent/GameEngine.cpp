@@ -45,6 +45,8 @@ namespace AI_Game_Agent
 
 		this->pActiveScene = nullptr;
 		this->pBufferScene = nullptr;
+
+		this->_playerScore = 0;
 	}
 
 	GameEngine* GameEngine::privGetInstance()
@@ -99,9 +101,10 @@ namespace AI_Game_Agent
 			pGE->pActiveScene->SetPlayer(playerMove);
 			
 			// and give player score
+			pGE->UpdatePlayerScore();
 
 			// Display to screen
-			ConsoleAnimationMan::updateScreen(*(pGE->pActiveScene));
+			ConsoleAnimationMan::updateScreen(*(pGE->pActiveScene), pGE->_playerScore);
 		}
 	}
 
@@ -208,4 +211,27 @@ namespace AI_Game_Agent
 		std::cout << "\n\n\n";*/
 	}
 
+	void GameEngine::UpdatePlayerScore()
+	{
+		Scene::CollisionType* collisionResults = pActiveScene->GetCollisionResults();
+		bool hitObsticle = false;
+
+		for (int rowNum = 0; rowNum < (pActiveScene->GetNumOfRows() -1); rowNum++)
+		{
+			if (collisionResults[rowNum] == Scene::CollisionType::PENALTY_OBSTICLE)
+			{
+				hitObsticle = true;
+				_playerScore += Util::Penalty_HitObsticle;
+			}
+			else if (collisionResults[rowNum] == Scene::CollisionType::REWARD_COIN)
+			{
+				_playerScore += Util::Reward_CollectedCoin;
+			}
+		}
+
+		if (hitObsticle == false)
+		{
+			_playerScore += Util::Reward_ProgressedOneCol;
+		}
+	}
 }

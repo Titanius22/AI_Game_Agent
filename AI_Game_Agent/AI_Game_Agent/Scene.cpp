@@ -7,15 +7,18 @@ namespace AI_Game_Agent
 		_numOfRows(argNumOfRows), _numOfCols(argNumOfCols)
 	{
 		_sceneData = new uint8_t[argNumOfRows * argNumOfCols];
-		_sceneData_char = new char[argNumOfRows * argNumOfCols];
 		_sceneData_Player = PlayerPos::undecided;
-		_sceneType = sceneType;
+		_sceneType = sceneType;	
 
 		if (_sceneType == SceneType::ACTIVE) {
 			_currSceneMode = SceneMode::SCENE_NEW;
+			_sceneData_char = new char[argNumOfRows * argNumOfCols];
+			_collisionResults = new CollisionType[argNumOfRows-1];
 		}
 		else if (_sceneType == SceneType::BUFFER) {
 			_currSceneMode = SceneMode::NA__BUFFER_SCENE;
+			_sceneData_char = nullptr;
+			_collisionResults = nullptr;
 		}
 		else
 		{
@@ -28,7 +31,12 @@ namespace AI_Game_Agent
 	Scene::~Scene()
 	{
 		delete _sceneData;
-		delete _sceneData_char;
+		if (_sceneData_char != nullptr) {
+			delete _sceneData_char;
+		}
+		if (_collisionResults != nullptr) {
+			delete _collisionResults;
+		}
 	}
 
 	void Scene::SetPlayer(PlayerPos playerPos)
@@ -81,7 +89,6 @@ namespace AI_Game_Agent
 			_sceneData[(_numOfCols * rowNum) + colNum] = data[rowNum];
 		}
 	}
-
 
 	void Scene::SetTerrainCol(uint8_t colToOverwrite, const Scene* scene, uint8_t colToCopy)
 	{
@@ -265,38 +272,81 @@ namespace AI_Game_Agent
 			}
 		}
 
-		
+		// reset collision
+		_collisionResults[0] = CollisionType::NONE;
+		_collisionResults[1] = CollisionType::NONE;
+		_collisionResults[2] = CollisionType::NONE;
+
 		// Write player last
 		switch (_sceneData_Player)
 		{
 			case PlayerPos::NORMAL:
-				assert(_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[0] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[0] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(0 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(0 * _numOfCols) + 0] = converterPlayer[1];
 
-				assert(_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[1] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[1] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(1 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(1 * _numOfCols) + 0] = converterPlayer[1];
 
-				assert(_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[2] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[2] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(2 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(2 * _numOfCols) + 0] = converterPlayer[1];
 				break;
 
 			case PlayerPos::JUMP:
-				assert(_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[0] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(0 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[0] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(0 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(0 * _numOfCols) + 0] = converterPlayer[2];
 				break;
 
 			case PlayerPos::DIVE:
-				assert(_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[1] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(1 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[1] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(1 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(1 * _numOfCols) + 0] = converterPlayer[2];
 				break;
 
 			case PlayerPos::DUCK:
-				assert(_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::EMPTY);
+				if (_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::OBSTICLE)
+					{_collisionResults[2] = CollisionType::PENALTY_OBSTICLE;}
+				else if (_sceneData[(2 * _numOfCols) + 0] == TerrainEnum::REWARD)
+					{_collisionResults[2] = CollisionType::REWARD_COIN;}
+				else if(_sceneData[(2 * _numOfCols) + 0] != TerrainEnum::EMPTY)
+					{assert(false);}
 				_sceneData_char[(2 * _numOfCols) + 0] = converterPlayer[2];
 				break;
 
 			default:
 				assert(false);
 		}
+	}
+
+
+	Scene::CollisionType* Scene::GetCollisionResults()
+	{
+		assert(_collisionResults != nullptr);
+		assert(_currSceneMode == SceneMode::PLAYER_UPDATED);
+
+		return _collisionResults;
 	}
 }
